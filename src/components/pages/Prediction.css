@@ -1,0 +1,140 @@
+li:first-child .text {
+  background-color: red;
+}
+li:nth-child(2) .text {
+  background-color: rgb(214, 214, 0);
+}
+li:nth-child(3) .text {
+  background-color: rgb(0, 183, 255);
+}
+li:nth-child(4) .text {
+  background-color: rgb(243, 179, 190);
+}
+li:nth-child(5) .text {
+  background-color: blue;
+}
+li:nth-child(6) .text {
+  background-color: red;
+}
+li:nth-child(7) .text {
+  background-color: orange;
+}
+li:nth-child(8) .text {
+  background-color: lightseagreen;
+}
+li:nth-child(9) .text {
+  background-color: purple;
+}
+li:nth-child(10) .text {
+  background-color: darkblue;
+}
+li:nth-child(11) .text {
+  background-color: wheat;
+  color: black;
+}
+li:nth-child(12) .text {
+  background-color: wheat;
+  color: black;
+}
+
+li:first-child.list {
+  transform: rotate(0deg) skewY(-60deg);
+}
+li:nth-child(2).list {
+  transform: rotate(30deg) skewY(-60deg);
+}
+li:nth-child(3).list {
+  transform: rotate(60deg) skewY(-60deg);
+}
+li:nth-child(4).list {
+  transform: rotate(90deg) skewY(-60deg);
+}
+li:nth-child(5).list {
+  transform: rotate(120deg) skewY(-60deg);
+}
+li:nth-child(6).list {
+  transform: rotate(150deg) skewY(-60deg);
+}
+li:nth-child(7).list {
+  transform: rotate(180deg) skewY(-60deg);
+}
+li:nth-child(8).list {
+  transform: rotate(210deg) skewY(-60deg);
+}
+li:nth-child(9).list {
+  transform: rotate(240deg) skewY(-60deg);
+}
+li:nth-child(10).list {
+  transform: rotate(270deg) skewY(-60deg);
+}
+li:nth-child(11).list {
+  transform: rotate(300deg) skewY(-60deg);
+}
+li:nth-child(12).list {
+  transform: rotate(330deg) skewY(-60deg);
+}
+
+.circle {
+  width: 25rem;
+  height: 25rem;
+  border: 1px solid black;
+  position: relative;
+  padding: 0;
+  margin: 0 auto;
+  border-radius: 50%;
+  list-style: none;
+  overflow: hidden;
+}
+li.list {
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 50%;
+  transform-origin: 0% 100%;
+}
+
+.text {
+  position: absolute;
+  left: -100%;
+  width: 200%;
+  height: 200%;
+  text-align: center;
+  display: block;
+  transform: skewY(60deg) rotate(15deg);
+  padding-top: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 18px;
+  color: white;
+}
+
+@media screen and (max-width: 600px) {
+  .circle {
+    width: 22rem;
+    height: 22rem;
+  }
+  .text {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .circle {
+    width: 16rem;
+    height: 16rem;
+  }
+}
+
+.start-rotate {
+  animation: start-rotate 1s linear infinite;
+}
+@keyframes start-rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.stop-rotate {
+  animation-play-state: paused;
+}

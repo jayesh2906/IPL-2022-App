@@ -1,24 +1,63 @@
-import logo from './logo.svg';
-import './App.css';
+import { Navbar, Footer } from "./components/layout";
+import {
+  Home,
+  Schedule,
+  Prediction,
+  BestOfIpl,
+  CreateXi,
+  SelectXi,
+} from "./components/pages";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { grey, red } from "@mui/material/colors";
+import { Paper } from "@mui/material";
+import { useState } from "react";
 
 function App() {
+  const [darkMode, setDarkMode] = useState(true);
+
+  // Theme customization
+  const theme = createTheme({
+    palette: {
+      mode: darkMode ? "dark" : "light",
+      primary: {
+        main: red[600],
+      },
+      secondary: {
+        main: grey[900],
+      },
+      background: {
+        default: darkMode ? "#121212" : "#edf1fd",
+      },
+    },
+  });
+
+  const handleTheme = () => {
+    setDarkMode(!darkMode);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Paper
+        sx={{
+          minHeight: "100vh",
+          backgroundColor: darkMode ? "#121212" : "#edf1fd",
+        }}
+      >
+        <BrowserRouter>
+          <Navbar handleTheme={handleTheme} />
+          <Routes>
+            <Route exact path="/" element={<Home />} />
+            <Route exact path="/schedule" element={<Schedule />} />
+            <Route exact path="/prediction" element={<Prediction />} />
+            <Route exact path="/bestofipl" element={<BestOfIpl />} />
+            <Route exact path="/createxi" element={<CreateXi />} />
+            <Route exact path="/selectxi/:team" element={<SelectXi />} />
+          </Routes>
+          <Footer />
+        </BrowserRouter>
+      </Paper>
+    </ThemeProvider>
   );
 }
 

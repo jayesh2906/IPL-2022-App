@@ -1,6 +1,6 @@
 # IPL-2022-App
 ## Overview
-The "IPL-2022-App" project is an online web application(fully responsive) which provides the live scorecard of all the matches of IPL-2022.
+The "IPL-2022-App" project is an online web application(fully responsive) which provides the live scorecard for all the matches of IPL-2022.
 * User can create his/her playing 11 team for each franchise.
 * User can watch best of ipl highlights.
 * User can also play wheel decider game for predicting winner of ipl 2022. 

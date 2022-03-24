@@ -7,6 +7,7 @@ import { StaleWhileRevalidate } from "workbox-strategies";
 clientsClaim();
 precacheAndRoute(self.__WB_MANIFEST);
 const fileExtensionRegexp = new RegExp("/[^/?]+\\.[^/]+$");
+
 registerRoute(({ request, url }) => {
   if (request.mode !== "navigate") {
     return false;

@@ -55,24 +55,16 @@ const videoList = [
     animation: "zoom-in-down",
   },
   {
-    src: "https://www.youtube.com/embed/adY9EFVWc1Q",
-    animation: "zoom-in-down",
-  },
-  {
-    src: "https://www.youtube.com/embed/EEenhrWt92Q?start=9",
-    animation: "zoom-in-up",
-  },
-  {
     src: "https://www.youtube.com/embed/C4iLVrrnB2A",
     animation: "zoom-in-down",
   },
   {
     src: "https://www.youtube.com/embed/lIFodRLSdy0?start=12",
-    animation: "zoom-in-down",
+    animation: "zoom-in-up",
   },
   {
     src: "https://www.youtube.com/embed/Y797EVfDfxA?start=4",
-    animation: "zoom-in-up",
+    animation: "zoom-in-down",
   },
   {
     src: "https://www.youtube.com/embed/hv_MFT__hyY",

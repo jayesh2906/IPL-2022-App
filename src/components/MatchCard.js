@@ -81,7 +81,7 @@ const MatchCard = ({ match }) => {
   }, [matchInfo]);
 
   const ScoreDialog = () => (
-    <Dialog open={open} onClose={handleClose}>
+    <Dialog open={open} onClose={handleClose} fullWidth={true} maxWidth="sm">
       <DialogTitle>Match Detail...</DialogTitle>
       {loading ? (
         <Box
@@ -112,7 +112,6 @@ const MatchCard = ({ match }) => {
                     variant="h6"
                     sx={{
                       marginTop: ".5rem",
-                      textAlign: "center",
                       fontWeight: "bold",
                       display: "block",
                     }}
@@ -121,22 +120,24 @@ const MatchCard = ({ match }) => {
                     Score Card
                   </Typography>
                 )}
-                <Grid container spacing={2} alignItems="center">
-                  {matchInfo.score.map(({ inning, r, w, o }, index, array) => (
+                <Grid container spacing={2} alignItems="start">
+                  {matchInfo.score.map(({ inning, r, w, o }) => (
                     <Grid key={inning} item xs={6}>
                       <Typography
                         component={"span"}
                         className={classes.typography}
                       >
-                        <b>Team:</b>
-                        {array[1 - index]["inning"].split(" ").at(0)}
+                        <b>Team:</b>{" "}
+                        {inning
+                          .split(" ")
+                          .slice(0, inning.split(" ").length - 2)
+                          .join(" ")}
                       </Typography>
                       <Typography
                         component={"span"}
                         className={classes.typography}
                       >
-                        <b>Run:</b>
-                        {r}
+                        <b>Run:</b> {r}
                       </Typography>
                       <Typography
                         component={"span"}

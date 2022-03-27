@@ -121,17 +121,22 @@ const MatchCard = ({ match }) => {
                   </Typography>
                 )}
                 <Grid container spacing={2} alignItems="start">
-                  {matchInfo.score.map(({ inning, r, w, o }) => (
+                  {matchInfo.score.map(({ inning, r, w, o }, index, array) => (
                     <Grid key={inning} item xs={6}>
                       <Typography
                         component={"span"}
                         className={classes.typography}
                       >
                         <b>Team:</b>{" "}
-                        {inning
-                          .split(" ")
-                          .slice(0, inning.split(" ").length - 2)
-                          .join(" ")}
+                        {matchInfo?.matchWinner
+                          ? array[1 - index]["inning"]
+                              .split(" ")
+                              .slice(0, inning.split(" ").length - 2)
+                              .join(" ")
+                          : inning
+                              .split(" ")
+                              .slice(0, inning.split(" ").length - 2)
+                              .join(" ")}
                       </Typography>
                       <Typography
                         component={"span"}

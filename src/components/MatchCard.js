@@ -128,15 +128,10 @@ const MatchCard = ({ match }) => {
                         className={classes.typography}
                       >
                         <b>Team:</b>{" "}
-                        {matchInfo?.matchWinner
-                          ? array[1 - index]["inning"]
-                              .split(" ")
-                              .slice(0, inning.split(" ").length - 2)
-                              .join(" ")
-                          : inning
-                              .split(" ")
-                              .slice(0, inning.split(" ").length - 2)
-                              .join(" ")}
+                        {inning
+                          .split(" ")
+                          .slice(0, inning.split(" ").length - 2)
+                          .join(" ")}
                       </Typography>
                       <Typography
                         component={"span"}

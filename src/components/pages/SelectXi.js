@@ -30,6 +30,7 @@ import bowler from "../../assets/bowler.png";
 import { makeStyles } from "@mui/styles";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import squadData from "../../database/db.json";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -71,7 +72,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SelectXi = () => {
-  const [loading, setLoading] = useState(true);
   const { team } = useParams();
   const classes = useStyles();
   const [squad, setSquad] = useState([]);
@@ -81,12 +81,6 @@ const SelectXi = () => {
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (squad.length > 0) {
-      setLoading(false);
-    }
-  }, [squad]);
-
   // Fetching squad detail
   useEffect(() => {
     const selectedSquad = JSON.parse(localStorage.getItem(`${team}`) || "[]");
@@ -94,10 +88,8 @@ const SelectXi = () => {
       setPlayingXi(true);
       setSquad(selectedSquad);
     } else {
-      fetch("https://ipl-squad-server.herokuapp.com/teams")
-        .then((response) => response.json())
-        .then((data) => setSquad(data[team]))
-        .catch((err) => console.log("ERROR", err));
+      const { teams } = squadData;
+      setSquad(teams[team]);
     }
   }, []);
 
@@ -284,74 +276,52 @@ const SelectXi = () => {
         marginTop: "1rem",
       }}
     >
-      {loading ? (
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            width: "100%",
-            flexWrap: "wrap",
-            gap: "1rem",
-            mx: "auto",
-          }}
+      {squad.map((player) => (
+        <Grid
+          item
+          lg={2}
+          md={3}
+          sm={4}
+          key={player.name}
+          xs={12}
+          className={classes.playerGrid}
         >
-          {[...Array(15)].map(() => (
-            <Skeleton
-              key={Math.random()}
-              variant="rectangular"
-              width={window.innerWidth > 550 ? "20%" : "92%"}
-              height="25vh"
-            />
-          ))}
-        </Box>
-      ) : (
-        squad.map((player) => (
-          <Grid
-            item
-            lg={2}
-            md={3}
-            sm={4}
-            key={player.name}
-            xs={12}
-            className={classes.playerGrid}
+          <img
+            src={
+              player.role === "Batsman"
+                ? batsman
+                : player.role === "Bowler"
+                ? bowler
+                : player.role === "WK-Batsman"
+                ? wicket
+                : allrounder
+            }
+            className={classes.image}
+            alt="team image"
+            loading="lazy"
+            fetchpriority="high"
+          />
+          <Typography
+            sx={{
+              marginTop: ".5rem",
+              display: "flex",
+              alignItems: "center",
+              textAlign: "center",
+            }}
           >
-            <img
-              src={
-                player.role === "Batsman"
-                  ? batsman
-                  : player.role === "Bowler"
-                  ? bowler
-                  : player.role === "WK-Batsman"
-                  ? wicket
-                  : allrounder
-              }
-              className={classes.image}
-              alt="team image"
-              loading="lazy"
-              fetchpriority="high"
-            />
-            <Typography
-              sx={{
-                marginTop: ".5rem",
-                display: "flex",
-                alignItems: "center",
-                textAlign: "center",
-              }}
-            >
-              {player.name}
-              {player.Nation === "Foreign" && (
-                <AirplanemodeActiveIcon fontSize="small" />
-              )}
-            </Typography>
-            <Checkbox
-              checked={player.isSelected}
-              disabled={player.captain}
-              className={player.captain ? classes.checkBox : ""}
-              onChange={(event) => handleChange(player, event)}
-            />
-          </Grid>
-        ))
-      )}
+            {player.name}
+            {player.Nation === "Foreign" && (
+              <AirplanemodeActiveIcon fontSize="small" />
+            )}
+          </Typography>
+          <Checkbox
+            checked={player.isSelected}
+            disabled={player.captain}
+            className={player.captain ? classes.checkBox : ""}
+            onChange={(event) => handleChange(player, event)}
+          />
+        </Grid>
+      ))}
     </Grid>
   );
 
@@ -384,36 +354,20 @@ const SelectXi = () => {
     </div>
   );
 
-  const AlertRules = () =>
-    loading ? (
-      <Box
-        sx={{
-          mx: "auto",
-          display: "flex",
-          justifyContent: "center",
-          width: "100%",
-        }}
-      >
-        <Skeleton
-          variant="rectangular"
-          width="100%"
-          height={window.innerWidth > 550 ? "12vh" : "0vh"}
-        />
-      </Box>
-    ) : (
-      <Alert severity="info" variant="outlined">
-        <AlertTitle>Rules to follow</AlertTitle>
-        <span>
-          You can select 1-2 Wicket-keeper, 3-5 Batsman, 1-3 All-rounder, 3-5
-          Bowler and max 4 Overseas player.
-        </span>
-      </Alert>
-    );
+  const AlertRules = () => (
+    <Alert severity="info" variant="outlined">
+      <AlertTitle>Rules to follow</AlertTitle>
+      <span>
+        You can select 1-2 Wicket-keeper, 3-5 Batsman, 1-3 All-rounder, 3-5
+        Bowler and max 4 Overseas player.
+      </span>
+    </Alert>
+  );
 
   return (
     <div style={{ minHeight: "90vh", padding: "1rem 3rem" }}>
       {playingXi ? (
-        <>
+        <React.Fragment>
           <Dialog
             open={playingXi}
             TransitionComponent={Transition}
@@ -524,13 +478,13 @@ const SelectXi = () => {
               </Button>
             </DialogActions>
           </Dialog>
-        </>
+        </React.Fragment>
       ) : (
-        <>
+        <React.Fragment>
           <AlertRules />
           <PlayersGrid />
           <ButtonsGroup />
-        </>
+        </React.Fragment>
       )}
       <MessageDialog />
       <SnackBar />

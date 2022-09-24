@@ -12,19 +12,14 @@ const Schedule = () => {
     getMatches()
       .then((data) =>
         setMatchList(
-          data?.data?.matchList?.sort((a, b) => {
+          data?.data?.matchList?.sort((b, a) => {
             return new Date(a.dateTimeGMT) - new Date(b.dateTimeGMT);
           })
         )
       )
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => setLoading(false));
   }, []);
-
-  useEffect(() => {
-    if (matchList.length > 0) {
-      setLoading(false);
-    }
-  }, [matchList]);
 
   return (
     <div style={{ minHeight: "90vh" }}>

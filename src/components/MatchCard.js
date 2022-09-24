@@ -99,7 +99,7 @@ const MatchCard = ({ match }) => {
               <b>Venue:</b> {matchInfo.venue}
             </Typography>
             {matchInfo.score && (
-              <>
+              <React.Fragment>
                 <Typography component={"span"} className={classes.typography}>
                   <b>Toss Winner:</b> {matchInfo.tossWinner}
                 </Typography>
@@ -154,7 +154,7 @@ const MatchCard = ({ match }) => {
                     </Grid>
                   ))}
                 </Grid>
-              </>
+              </React.Fragment>
             )}
           </DialogContentText>
         </DialogContent>
@@ -171,8 +171,30 @@ const MatchCard = ({ match }) => {
     </Dialog>
   );
 
+  const getBorder = (mathcTitle) => {
+    const borderColors = {
+      FinalQualifier: "2px solid #FFD700",
+      Eliminator: "2px solid red",
+    };
+
+    if (mathcTitle.includes("Final") || mathcTitle.includes("Qualifier")) {
+      return {
+        border: borderColors.FinalQualifier,
+      };
+    } else if (mathcTitle.includes("Eliminator")) {
+      return {
+        border: borderColors.Eliminator,
+      };
+    }
+  };
+
   const ScheduleCard = () => (
-    <Card key={match.id} variant="outlined" className={classes.cardstyle}>
+    <Card
+      key={match.id}
+      variant="outlined"
+      className={classes.cardstyle}
+      style={getBorder(match.name)}
+    >
       <CardHeader
         className={classes.cardHeader}
         title={match.name}
@@ -216,10 +238,10 @@ const MatchCard = ({ match }) => {
   );
 
   return (
-    <>
+    <React.Fragment>
       <ScheduleCard />
       <ScoreDialog />
-    </>
+    </React.Fragment>
   );
 };
 

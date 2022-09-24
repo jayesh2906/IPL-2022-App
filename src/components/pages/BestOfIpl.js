@@ -13,16 +13,16 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const videoList = [
   {
-    src: "https://www.youtube.com/embed/yU1UUk2qWTo",
+    src: "https://www.youtube.com/embed/SyMMbjPX2zw",
     animation: "zoom-in-down",
   },
-  { src: "https://www.youtube.com/embed/iOqUSsDQO0s", animation: "zoom-in-up" },
+  { src: "https://www.youtube.com/embed/wDSpSF0fqXk", animation: "zoom-in-up" },
   {
-    src: "https://www.youtube.com/embed/nHkgH3hz5VY",
+    src: "https://www.youtube.com/embed/9b1XlGenH9s",
     animation: "zoom-in-down",
   },
   {
-    src: "https://www.youtube.com/embed/_upV--0JfRU",
+    src: "https://www.youtube.com/embed/I3ZmmI-5UyI",
     animation: "zoom-in-down",
   },
   {
@@ -34,22 +34,22 @@ const videoList = [
     animation: "zoom-in-down",
   },
   {
-    src: "https://www.youtube.com/embed/2LMAjqyhja0?start=13",
+    src: "https://www.youtube.com/embed/erFkel9Qny4",
     animation: "zoom-in-down",
   },
   {
-    src: "https://www.youtube.com/embed/nYfjRsHKw1M?start=5",
+    src: "https://www.youtube.com/embed/V7FyDVmZcwQ",
     animation: "zoom-in-up",
   },
   {
-    src: "https://www.youtube.com/embed/ejx4QEP9h2E?start=13",
+    src: "https://www.youtube.com/embed/oCxkUWRk8dA",
     animation: "zoom-in-down",
   },
   {
     src: "https://www.youtube.com/embed/sYoEofesPac",
     animation: "zoom-in-down",
   },
-  { src: "https://www.youtube.com/embed/q0ZD1ItsTN8", animation: "zoom-in-up" },
+  { src: "https://www.youtube.com/embed/30_1741woZc", animation: "zoom-in-up" },
   {
     src: "https://www.youtube.com/embed/-zXtUt5sV8M",
     animation: "zoom-in-down",
@@ -63,7 +63,7 @@ const videoList = [
     animation: "zoom-in-up",
   },
   {
-    src: "https://www.youtube.com/embed/Y797EVfDfxA?start=4",
+    src: "https://www.youtube.com/embed/zL7x55VEtB4",
     animation: "zoom-in-down",
   },
   {

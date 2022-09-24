@@ -52,7 +52,7 @@ const CreateXi = () => {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 800);
+    }, 600);
   }, []);
 
   return (
@@ -61,9 +61,9 @@ const CreateXi = () => {
         {teamImage.map(({ name, src }) => (
           <Grid key={name} item md={3} sm={4} xs={6}>
             {loading ? (
-              <>
+              <React.Fragment>
                 <Skeleton variant="square" width="100%" height="40vh" />
-              </>
+              </React.Fragment>
             ) : (
               <Item>
                 <img
